@@ -1,6 +1,116 @@
 Implemente uma classe Empregado com os seguintes atributos: nome, idade e salario. Crie os métodos promover(), aumentarSalario(), demitir() e fazerAniversario().
 
 package com.mycompany.lista8;
+public class Empregado {
+
+    private String nome;
+    private int idade;
+    private double salario;
+
+    // Atributos publicos
+    public Empregado(String nome, int idade, double salario) {
+        //acho que vai ser o int porque idade é preciso, numero inteiro) (salário é double porque posso colocar muitas casas decimais)
+        //uso o this quando a variavél estiver com o mesmo nome do metódo
+        this.nome = nome;
+        this.idade = idade;
+        this.salario = salario;
+    }
+
+    // Get e set para todos os atributos
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
+    public String toString() {
+        return "Empregado{"
+                + "nome='" + nome + '\''
+                + ", idade=" + idade
+                + ", salario=" + salario
+                + '}';
+    }
+
+    // Método para promover o empregado 
+    public void promover() {
+        if (idade > 18) {
+            double aumento = salario * 0.25; // 25% de aumento
+            aumentarSalario(aumento);
+        } else {
+            System.out.println(nome + " O empregado deve ter mais de 18 anos para ser promovido.");
+        }
+    }
+
+    // Método para aumentar o salário de acordo com o porcentual informado
+    public void aumentarSalario(double porcentual) {
+        salario += salario * (porcentual / 100);
+        System.out.println("Valor do salário após o aumento: " + salario);
+    }
+
+    // Método para demitir o empregado
+    public void demitir(int motivo) {
+        switch (motivo) {
+            case 1: // Justa causa
+                System.out.println("Demitido por justa causa. Deve cumprir aviso prévio.");
+                break;
+            case 2: // Decisão do empregador
+                double multa = salario * 0.4;
+                salario -= multa;
+                System.out.println("Demitido por decisão do empregador. Multa aplicada: " + multa);
+                break;
+            case 3: // Aposentadoria
+                double salarioAposentadoria;
+                if (salario >= 1000 && salario < 2000) {
+                    salarioAposentadoria = 1500;
+                } else if (salario >= 2000 && salario < 3000) {
+                    salarioAposentadoria = 2500;
+                } else if (salario >= 3000 && salario < 4000) {
+                    salarioAposentadoria = 3500;
+                } else {
+                    salarioAposentadoria = 4000;
+                }
+                salario = salarioAposentadoria;
+                System.out.println("Valor do Salário de aposentadoria: " + salario);
+                break;
+        }
+    }
+
+    // Método para fazer aniversário (aumenta a idade do empregado em 1 ano)
+    public void fazerAniversario() {
+        idade++;
+        System.out.println("Feliz aniversário! Nova idade: " + idade);
+    }
+}
+
+
+Crie uma classe Principal com um menu interativo para testar a classe Empregado. O menu deve permitir ao usuário escolher as seguintes opções para manipular uma lista de empregados:
+- Criar novo empregado
+- Promover empregado
+- Aumentar salário do empregado
+- Demitir empregado
+- Fazer aniversário do empregado
+- Mostrar detalhes dos empregados
+- Sair
+
+package com.mycompany.lista8;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -119,3 +229,6 @@ public class Lista8 {
         }
     }
 }
+
+
+
